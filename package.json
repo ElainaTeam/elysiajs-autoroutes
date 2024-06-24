@@ -1,0 +1,60 @@
+{
+  "name": "elysiajs-autoroutes",
+  "version": "0.0.1",
+  "description": "File system routing for ElysiaJS",
+  "author": "Misono Mika <misonomika@elainateam.io>",
+  "license": "MIT",
+  "homepage": "https://github.com/ElainaTeam/elysiajs-autoroutes#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElainaTeam/elysiajs-autoroutes.git"
+  },
+  "bugs": "https://github.com/ElainaTeam/elysiajs-autoroutes/issues",
+  "keywords": [
+    "bun",
+    "autoroutes",
+    "elysia"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint .",
+    "format": "prettier . --write",
+    "dev": "bun run build && bun run test/index.ts",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.1.0",
+    "@eslint/js": "^9.5.0",
+    "@types/bun": "latest",
+    "esbuild-plugin-version-injector": "^1.2.1",
+    "globals": "^15.6.0",
+    "prettier": "^3.3.2",
+    "tsup": "^8.1.0",
+    "typescript-eslint": "^7.13.1"
+  },
+  "peerDependencies": {
+    "elysia": "^1.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "elysia": "^1.0.25"
+  }
+}
