@@ -3,7 +3,7 @@ import { Glob } from "bun"
 import path from "path"
 import fs from "fs"
 
-import { removeTrailingSlash, getPath, transformToURL } from "@/utils"
+import * as utils from "@/utils"
 
 export type AutoroutesOptions = {
 	routesDir?: string
@@ -13,8 +13,12 @@ export type AutoroutesOptions = {
 
 export async function autoroutes(options?: AutoroutesOptions) {
 	const defaultOptions: Required<AutoroutesOptions> = {
-		routesDir: options?.routesDir ? getPath(options.routesDir) : "./routes",
-		prefix: options?.prefix ? removeTrailingSlash(options.prefix) : "/",
+		routesDir: utils.getPath(
+			options?.routesDir ? options.routesDir : "./routes",
+		),
+		prefix: options?.prefix
+			? utils.removeTrailingSlash(options.prefix)
+			: "/",
 		pattern: options?.pattern ?? "**/*.{ts,tsx,js,jsx,mjs,cjs}",
 	}
 
@@ -42,7 +46,7 @@ export async function autoroutes(options?: AutoroutesOptions) {
 		if (!file.default)
 			throw new Error(`${filePath} doesn't provide default export.`)
 
-		const url = transformToURL(filePath)
+		const url = utils.transformToURL(filePath)
 
 		plugin.group(url, (app) => file.default(app) ?? app)
 	}
