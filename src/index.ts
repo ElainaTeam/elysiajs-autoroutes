@@ -48,7 +48,7 @@ export async function autoroutes(options?: AutoroutesOptions) {
 
 		const url = utils.transformToURL(filePath)
 
-		plugin.group(url, (app) => file.default(app) ?? app)
+		plugin.group(`/${url}`, (app) => file.default(app) ?? app)
 	}
 
 	return plugin

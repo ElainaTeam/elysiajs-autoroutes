@@ -3,7 +3,7 @@ import Elysia from "elysia"
 import { autoroutes } from "dist"
 
 const app = new Elysia().use(
-	autoroutes({
+	await autoroutes({
 		prefix: "/api",
 		routesDir: "./routes",
 	}),
